@@ -1,1 +1,21 @@
-<p>home works!</p>
+<div class="home-container">
+    <mat-grid-list cols="2" rowHeight="100px">
+        <mat-grid-tile colspan="1">
+            <mat-form-field appearance="outline" style="width: 50%">
+                <mat-label>Search Config</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matPrefix>search</mat-icon>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+            <button mat-raised-button color="primary" (click)="routeTo('create-edit-config')">New Config</button>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+            JSON Config 1
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+            JSON Config 2
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

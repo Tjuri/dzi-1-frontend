@@ -1,1 +1,21 @@
-<p>create-edit-config works!</p>
+<div class="page-container">
+
+    <div class="top-bar u-margin-top-10 u-margin-bottom-10">
+        <button class="u-margin-right-10"
+                mat-raised-button color="primary" (click)="save()">Save</button>
+    </div>
+
+    <div class="top-bar u-margin-top-20 u-margin-bottom-10">
+        <button class="u-margin-right-10"
+                mat-raised-button color="primary" (click)="addId()">Add ID</button>
+        <button class="u-margin-right-10"
+                mat-raised-button color="primary" (click)="addValue()">Add Value</button>
+    </div>
+    <div class="json-editor-container">
+        <json-editor [options]="editorOptions"
+                     [data]="data"
+                     (change)="jsonChanged($event)">
+        </json-editor>
+    </div>
+
+</div>

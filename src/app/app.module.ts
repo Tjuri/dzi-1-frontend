@@ -10,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AngularMaterialModule} from "./ui/material.module";
 import { HomeComponent } from './components/home/home.component';
 import { CreateEditConfigComponent } from './components/create-edit-config/create-edit-config.component';
+import { NgJsonEditorModule } from 'ang-jsoneditor'
 
 
 @NgModule({
@@ -28,6 +29,8 @@ import { CreateEditConfigComponent } from './components/create-edit-config/creat
         ReactiveFormsModule,
         // UI
         AngularMaterialModule,
+        // Libs
+        NgJsonEditorModule
     ],
     providers: [],
     bootstrap: [AppComponent]
