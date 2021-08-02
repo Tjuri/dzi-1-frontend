@@ -10,14 +10,16 @@ import {HttpClientModule} from "@angular/common/http";
 import {AngularMaterialModule} from "./ui/material.module";
 import { HomeComponent } from './components/home/home.component';
 import { CreateEditConfigComponent } from './components/create-edit-config/create-edit-config.component';
-import { NgJsonEditorModule } from 'ang-jsoneditor'
+import { NgJsonEditorModule } from 'ang-jsoneditor';
+import { AddFieldToConfigDialogComponent } from './dialogs/add-field-to-config-dialog/add-field-to-config-dialog.component'
 
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        CreateEditConfigComponent
+        CreateEditConfigComponent,
+        AddFieldToConfigDialogComponent
     ],
     imports: [
         AppRoutingModule,

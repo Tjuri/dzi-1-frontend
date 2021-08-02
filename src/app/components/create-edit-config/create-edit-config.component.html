@@ -2,20 +2,42 @@
 
     <div class="top-bar u-margin-top-10 u-margin-bottom-10">
         <button class="u-margin-right-10"
-                mat-raised-button color="primary" (click)="save()">Save</button>
+                mat-raised-button color="primary" (click)="save()">
+
+            <mat-icon>arrow_back_ios</mat-icon>
+            Back
+        </button>
+
+        <button class="u-margin-right-10"
+                mat-raised-button color="primary" (click)="save()">
+
+            <mat-icon>save</mat-icon>
+            Save
+        </button>
     </div>
 
-    <div class="top-bar u-margin-top-20 u-margin-bottom-10">
-        <button class="u-margin-right-10"
-                mat-raised-button color="primary" (click)="addId()">Add ID</button>
-        <button class="u-margin-right-10"
-                mat-raised-button color="primary" (click)="addValue()">Add Value</button>
+    <div class="u-flex-column u-flex-align-end" style="width: 50%">
+        <div class="top-bar u-margin-top-20 u-margin-bottom-10" >
+            <button class="u-margin-right-10"
+                    mat-raised-button color="primary" (click)="addId()">Set ID
+            </button>
+            <button class="u-margin-right-10"
+                    mat-raised-button color="primary" (click)="addValue()">Add Value
+            </button>
+        </div>
+        <div *ngIf="!isLoading; else loadingSpinner"
+             class="json-editor-container">
+            <json-editor [options]="editorOptions"
+                         [data]="data"
+                         (change)="jsonChanged($event)">
+            </json-editor>
+        </div>
     </div>
-    <div class="json-editor-container">
-        <json-editor [options]="editorOptions"
-                     [data]="data"
-                     (change)="jsonChanged($event)">
-        </json-editor>
-    </div>
-
 </div>
+
+
+<ng-template #loadingSpinner>
+    <div class="u-margin-20">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

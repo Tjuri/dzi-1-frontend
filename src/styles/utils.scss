@@ -343,3 +343,84 @@
 .u-padding-left-320 {
   padding-left: 320px !important;
 }
+
+
+// FLEXS
+.u-flex {
+  display: flex;
+}
+
+.u-flex-row {
+  display: flex;
+  flex-direction: row !important;
+}
+
+.u-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.u-flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.u-flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.u-flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.u-flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.u-flex-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.u-flex-center-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.u-flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.u-flex-align-baseline {
+  display: flex;
+  align-items: baseline;
+}
+
+.u-flex-align-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+.u-flex-align-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+.u-flex-no-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.u-flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.u-width-100 {
+  width: 100%;
+}

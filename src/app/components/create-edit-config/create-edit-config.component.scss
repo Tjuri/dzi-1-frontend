@@ -1,8 +1,10 @@
 .page-container {
   margin: 15px;
+  display: flex;
+  justify-content: center;
 
   .json-editor-container {
-    width: 50%;
+    width: 100%;
   }
 
   .top-bar {
