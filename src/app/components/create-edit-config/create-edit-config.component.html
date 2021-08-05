@@ -52,8 +52,8 @@
     </div>
 
     <!-- ROW 2-->
-    <div class="u-flex u-flex u-flex-space-around main-content-container">
-        <div class="u-flex-column u-flex-align-start">
+    <div class="u-flex u-flex u-flex-center main-content-container">
+        <div class="u-flex-column u-flex-align-start u-margin-right-20">
             <mat-form-field class="input-width"
                             appearance="outline">
                 <mat-label>Device Brand</mat-label>
@@ -74,7 +74,7 @@
         </div>
 
         <div *ngIf="!isLoading && !isError;"
-             class="u-margin-bottom-10 u-width-50">
+             class="u-margin-bottom-10 u-width-50 u-margin-top-5">
 
             <button class="u-margin-right-10"
                     mat-raised-button color="primary" (click)="addId()">Set ID
