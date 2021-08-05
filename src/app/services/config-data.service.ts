@@ -29,4 +29,8 @@ export class ConfigDataService {
     getConfigs(): Observable<ConfigContainer[]> {
         return this.httpClient.get<ConfigContainer[]>(`${this.baseUrl}/configs`);
     }
+
+    getConfigById(id: string): Observable<ConfigContainer> {
+        return this.httpClient.get<ConfigContainer>(`${this.baseUrl}/configs/${id}`);
+    }
 }

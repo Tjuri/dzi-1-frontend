@@ -1,15 +1,10 @@
 .page-container {
   margin: 15px;
-  display: flex;
-  justify-content: center;
 
   .json-editor-container {
-    width: 100%;
+    //width: 50%;
   }
 
-  .top-bar {
-
-  }
 }
 
 :host ::ng-deep json-editor,
@@ -23,3 +18,19 @@
   background-color: #4050b5;
   border-bottom: 1px solid #4050b5;
 }
+
+::ng-deep {
+  .mat-h2, .mat-title, .mat-typography h2 {
+    margin: 0 0 0px !important;
+  }
+}
+
+.input-width {
+  width: 240px
+}
+
+.main-content-container {
+  padding: 10px 30px;
+  border-top: 1px solid lightgrey;
+}
+

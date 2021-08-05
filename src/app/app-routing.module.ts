@@ -10,7 +10,12 @@ const routes: Routes = [
   },
 
   {
-    path: 'create-edit-config',
+    path: 'new-config',
+    component: CreateEditConfigComponent,
+  },
+
+  {
+    path: 'edit-config/:id',
     component: CreateEditConfigComponent,
   },
 ];
