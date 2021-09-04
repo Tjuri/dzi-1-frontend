@@ -22,8 +22,8 @@ export class ConfigDataService {
         return this.httpClient.put<ConfigContainer>(`${this.baseUrl}/configs/${configId}`, configContainer);
     }
 
-    deleteConfig(configContainer: ConfigContainer): Observable<ConfigContainer> {
-        return this.httpClient.delete<ConfigContainer>(`${this.baseUrl}/configs/${configContainer.configId}`);
+    deleteConfig(configId: string): Observable<ConfigContainer> {
+        return this.httpClient.delete<ConfigContainer>(`${this.baseUrl}/configs/${configId}`);
     }
 
     getConfigs(): Observable<ConfigContainer[]> {

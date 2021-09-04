@@ -22,6 +22,10 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.initConfigs();
+    }
+
+    initConfigs() {
         this.configDataService
             .getConfigs()
             .subscribe(data => {
@@ -49,5 +53,12 @@ export class HomeComponent implements OnInit {
 
     routeTo(path: string) {
         this.router.navigate([`/${path}`]);
+    }
+
+    deleteConfigById(configId: string) {
+        this.configDataService.deleteConfig(configId)
+            .subscribe(() => {
+                this.initConfigs();
+            })
     }
 }

@@ -9,6 +9,7 @@ import {debounceTime, takeUntil} from "rxjs/operators";
 import {ConfigDataService} from 'src/app/services/config-data.service';
 import {ConfigContainer} from "../../model/ConfigContainer";
 import * as moment from "moment";
+import {MessageDialogComponent} from "../../dialogs/message-dialog/message-dialog.component";
 
 @Component({
     selector: 'app-create-edit-config',
@@ -94,7 +95,9 @@ export class CreateEditConfigComponent implements OnInit {
                         this.isFreshConfig = false;
                         this.hasUnsavedChanges = false;
                         this.isSaving = false;
-                        this.router.navigateByUrl(`edit-config/${this.configContainer.configId}`)
+                        this.router.navigateByUrl(`edit-config/${this.unsavedConfigContainer.configId}`)
+                    }, error => {
+                        this.handleSaveError();
                     })
             } else {
                 this.configDataService.updateConfig(this.unsavedConfigContainer, this.configContainer.configId)
@@ -106,6 +109,8 @@ export class CreateEditConfigComponent implements OnInit {
                         } else {
                             this.configContainer = this.unsavedConfigContainer;
                         }
+                    }, error => {
+                        this.handleSaveError();
                     })
             }
         } else {
@@ -175,5 +180,18 @@ export class CreateEditConfigComponent implements OnInit {
 
     getConfigIDs() {
         return this.configContainer.configId;
+    }
+
+    handleSaveError() {
+        this.configDataService.getConfigById(this.unsavedConfigContainer.configId)
+            .subscribe(configContainer => {
+                if (this.isFreshConfig) {
+                    this.dialog.open(MessageDialogComponent, {data: {message: `The configId '${this.unsavedConfigContainer.configId}' does already exist. Please choose another one.`}})
+                } else {
+                    this.dialog.open(MessageDialogComponent, {data: {message: 'An error occured. Please check the JSON data.'}})
+                }
+            }, error => {
+                this.dialog.open(MessageDialogComponent, {data: {message: 'An error occured. Please check the JSON data.'}})
+            });
     }
 }

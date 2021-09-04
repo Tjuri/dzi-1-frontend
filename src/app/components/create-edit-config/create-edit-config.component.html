@@ -21,15 +21,21 @@
                         mat-raised-button color="primary"
                         (click)="saveConfig()">
 
-                    <mat-icon>save</mat-icon>
-                    Save Changes
+                    <mat-icon class="u-margin-right-10">save</mat-icon>
+                    <span *ngIf="isFreshConfig">
+                        Create Config
+                    </span>
+                    <span *ngIf="!isFreshConfig">
+                        Save Changes
+                    </span>
                 </button>
 
-                <button class="u-margin-right-10"
+                <button *ngIf="!isFreshConfig"
+                        class="u-margin-right-10"
                         mat-raised-button color="primary"
                         (click)="revertChanges()">
 
-                    <mat-icon>refresh</mat-icon>
+                    <mat-icon class="u-margin-right-10">refresh</mat-icon>
                     Revert Changes
                 </button>
             </div>
@@ -55,16 +61,6 @@
                         Saved
                     </h2>
                 </div>
-            </div>
-
-            <div *ngIf="noIdError"
-                 class="u-flex-align-center">
-                <mat-icon class="u-margin-right-10"
-                          color="secondary">warning_amber
-                </mat-icon>
-                <h2>
-                    Please specify ID to save this config
-                </h2>
             </div>
         </div>
     </div>
@@ -98,20 +94,34 @@
 
             <mat-form-field class="input-width"
                             appearance="outline">
-                <mat-label>Last Change</mat-label>
+                <mat-label>Last Modified</mat-label>
                 <input matInput [value]="lastModifiedFormated" disabled>
             </mat-form-field>
         </div>
 
-        <div *ngIf="!isLoading && !isError;"
-             class="u-margin-bottom-10 u-width-50 u-margin-top-5">
+        <div *ngIf="!isLoading && !isError;" class="u-margin-bottom-10 u-width-50 u-margin-top-5">
+            <div class="u-flex-row">
 
-            <button class="u-margin-right-10"
-                    mat-raised-button color="primary" (click)="addId()">Add Device ID
-            </button>
-            <button class="u-margin-right-10"
-                    mat-raised-button color="primary" (click)="addValue()">Add Value
-            </button>
+                <button class="u-margin-right-10"
+                        mat-raised-button color="primary" (click)="addId()">Add nms_id
+                </button>
+                <button class="u-margin-right-10"
+                        mat-raised-button color="primary" (click)="addValue()">Add Value
+                </button>
+
+                <div *ngIf="noIdError"
+                     class="u-flex-align-center">
+                    <mat-icon class="u-margin-right-10"
+                              color="secondary">warning_amber
+                    </mat-icon>
+                    <span>
+                        Please specify 'configId' and at least one 'nms_id' to save this config
+                    </span>
+                </div>
+
+            </div>
+
+
 
             <div
                     class="json-editor-container u-margin-top-10">

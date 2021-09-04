@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CreateEditConfigComponent } from './components/create-edit-config/create-edit-config.component';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { AddFieldToConfigDialogComponent } from './dialogs/add-field-to-config-dialog/add-field-to-config-dialog.component'
+import { MessageDialogComponent } from './dialogs/message-dialog/message-dialog.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AddFieldToConfigDialogComponent } from './dialogs/add-field-to-config-d
         AppComponent,
         HomeComponent,
         CreateEditConfigComponent,
-        AddFieldToConfigDialogComponent
+        AddFieldToConfigDialogComponent,
+        MessageDialogComponent
     ],
     imports: [
         AppRoutingModule,

@@ -2,7 +2,7 @@
     <mat-grid-list cols="2" rowHeight="100px">
         <mat-grid-tile colspan="1">
             <mat-form-field appearance="outline" style="width: 50%">
-                <mat-label>Search Config</mat-label>
+                <mat-label>Search Configs</mat-label>
                 <input matInput [(ngModel)]="searchValue" (ngModelChange)="filterConfigs()">
                 <mat-icon matPrefix>search</mat-icon>
             </mat-form-field>
@@ -17,7 +17,32 @@
                    cols="2" rowHeight="100px">
         <mat-grid-tile *ngFor="let configContainer of filteredConfigContainer"
                        colspan="1">
-            <mat-card class="config-card" (click)="routeTo('edit-config/' + configContainer.configId)"> {{ configContainer.configId }}</mat-card>
+            <mat-card class="config-card">
+                <div class="u-flex-row u-flex-space-between">
+                    <div>
+                        <div style="font-size: 18px; font-weight: 600;" class="u-margin-bottom-5">
+                            {{ configContainer.configId }}
+                        </div>
+                        <div>
+                            nms_id:
+                            <span *ngFor="let nms_id of configContainer?.nms_id?.values">
+                                {{ nms_id }}
+                            </span>
+                        </div>
+                        <div>
+                            Modified: {{ configContainer.lastModified | date: 'short' }}
+                        </div>
+                        <div>
+                            Created: {{ configContainer.lastModified | date: 'short' }}
+                        </div>
+                    </div>
+                    <div>
+                        <button mat-raised-button color="secondary" class="u-margin-right-10" (click)="routeTo('edit-config/' + configContainer.configId)"> Open</button>
+                        <button mat-raised-button color="secondary" class="u-margin-right-10" (click)="deleteConfigById(configContainer.configId); $event.preventDefault()"> Delete</button>
+                        <button mat-raised-button color="secondary" class="u-margin-right-10" disabled> Clone</button>
+                    </div>
+                </div>
+            </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
 
