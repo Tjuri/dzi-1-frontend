@@ -1,28 +1,32 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {FormControl, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-add-field-to-config-dialog',
-  templateUrl: './add-field-to-config-dialog.component.html',
-  styleUrls: ['./add-field-to-config-dialog.component.scss']
+    selector: 'app-add-field-to-config-dialog',
+    templateUrl: './add-field-to-config-dialog.component.html',
+    styleUrls: ['./add-field-to-config-dialog.component.scss']
 })
 export class AddFieldToConfigDialogComponent implements OnInit {
 
-  fieldName: string = '';
-  inputData = {
-    path: '',
-    value: ''
-  };
+    fieldName: string = '';
+    inputData = {
+        path: '',
+        value: ''
+    };
 
-  constructor(public dialogRef: MatDialogRef<AddFieldToConfigDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { fieldName: string}) { }
+    constructor(public dialogRef: MatDialogRef<AddFieldToConfigDialogComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: { fieldName: string, path: string }) {
+    }
 
-  ngOnInit(): void {
-    this.fieldName = this.data.fieldName;
-  }
+    ngOnInit(): void {
+        this.fieldName = this.data.fieldName;
+        if (this.data.path) {
+            this.inputData.path = this.data.path;
+        }
+    }
 
-  closeDialog(data?: any) {
-    this.dialogRef.close(data);
-  }
+    closeDialog(data?: any) {
+        this.dialogRef.close(data);
+    }
 }

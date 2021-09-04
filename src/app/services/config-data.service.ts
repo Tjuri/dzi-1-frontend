@@ -18,8 +18,8 @@ export class ConfigDataService {
         return this.httpClient.post<ConfigContainer>(`${this.baseUrl}/configs`, configContainer);
     }
 
-    updateConfig(configContainer: ConfigContainer): Observable<ConfigContainer> {
-        return this.httpClient.put<ConfigContainer>(`${this.baseUrl}/configs/${configContainer.configId}`, configContainer);
+    updateConfig(configContainer: ConfigContainer, configId: string): Observable<ConfigContainer> {
+        return this.httpClient.put<ConfigContainer>(`${this.baseUrl}/configs/${configId}`, configContainer);
     }
 
     deleteConfig(configContainer: ConfigContainer): Observable<ConfigContainer> {
