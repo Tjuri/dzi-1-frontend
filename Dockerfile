@@ -3,7 +3,7 @@
 # Stage 1: Compile and Build angular codebase
 
 # Use official node image as the base image
-FROM node:12.0 AS build
+FROM node:12.14 AS build
 
 # Set the working directory
 WORKDIR /usr/local/app
@@ -21,6 +21,9 @@ RUN npm run build-prod
 
 # Use official nginx image as the base image
 FROM nginx:latest
+
+# Remove default files
+RUN rm -rf /usr/share/nginx/html/*
 
 # Copy nginx copy
 COPY /docker-config/nginx.conf /etc/nginx/nginx.conf
