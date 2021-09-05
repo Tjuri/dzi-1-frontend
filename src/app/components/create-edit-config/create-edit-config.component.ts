@@ -149,7 +149,8 @@ export class CreateEditConfigComponent implements OnInit {
                     let dataTemp = Object.assign({}, this.configContainer);
                     dataTemp.nms_id.path = data.path;
                     dataTemp.nms_id.values.push(data.value);
-                    this.configContainer = dataTemp;
+                    this.unsavedConfigContainer = dataTemp;
+                    this.hasUnsavedChanges = true;
                 }
             });
     }
@@ -164,7 +165,8 @@ export class CreateEditConfigComponent implements OnInit {
                         path: data.path,
                         key: data.value
                     });
-                    this.configContainer = dataTemp;
+                    this.unsavedConfigContainer = dataTemp;
+                    this.hasUnsavedChanges = true;
                 }
             });
     }
