@@ -23,12 +23,12 @@
                         <div style="font-size: 18px; font-weight: 600;" class="u-margin-bottom-5">
                             {{ configContainer.configId }}
                         </div>
-                        <div>
-                            nms_id:
-                            <span *ngFor="let nms_id of configContainer?.nms_id?.values">
-                                {{ nms_id }}
-                            </span>
-                        </div>
+<!--                        <div>-->
+<!--                            nms_id:-->
+<!--                            <span *ngFor="let nms_id of configContainer?.nms_id?.values">-->
+<!--                                {{ nms_id }}-->
+<!--                            </span>-->
+<!--                        </div>-->
                         <div>
                             Modified: {{ configContainer.lastModified | date: 'short' }}
                         </div>
@@ -39,7 +39,7 @@
                     <div>
                         <button mat-raised-button color="secondary" class="u-margin-right-10" (click)="routeTo('edit-config/' + configContainer.configId)"> Open</button>
                         <button mat-raised-button color="secondary" class="u-margin-right-10" (click)="deleteConfigById(configContainer.configId); $event.preventDefault()"> Delete</button>
-                        <button mat-raised-button color="secondary" class="u-margin-right-10" disabled> Clone</button>
+<!--                        <button mat-raised-button color="secondary" class="u-margin-right-10" disabled> Clone</button>-->
                     </div>
                 </div>
             </mat-card>

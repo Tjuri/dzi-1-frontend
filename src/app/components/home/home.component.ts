@@ -39,14 +39,15 @@ export class HomeComponent implements OnInit {
     }
 
     filterConfigs() {
+        console.log(this.searchValue)
         if (!this.searchValue) {
             this.filteredConfigContainer = this.configContainers;
             return;
         }
         this.filteredConfigContainer = this.configContainers.filter(configContainer => {
-                return (configContainer.deviceName?.includes(this.searchValue)
-                    || configContainer.deviceBrand?.includes(this.searchValue)
-                    || configContainer.configId?.includes(this.searchValue));
+                return (configContainer.deviceName?.toLowerCase()?.includes(this.searchValue.toLowerCase())
+                    || configContainer.deviceBrand?.toLowerCase()?.includes(this.searchValue.toLowerCase())
+                    || configContainer.configId?.toLowerCase()?.includes(this.searchValue.toLowerCase()));
             }
         );
     }
