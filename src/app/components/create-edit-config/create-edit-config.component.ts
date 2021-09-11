@@ -91,7 +91,7 @@ export class CreateEditConfigComponent implements OnInit {
 
     saveConfig() {
         console.log(this.unsavedConfigContainer)
-        if (this.unsavedConfigContainer.nms_id?.values?.length > 0 && !!this.unsavedConfigContainer.configId && this.unsavedConfigContainer.configId === this.configId) {
+        if (this.unsavedConfigContainer.nms_id?.values?.length > 0 && !!this.unsavedConfigContainer.configId) {
             this.noIdError = false;
             this.isSaving = true;
             if (this.isFreshConfig) {
