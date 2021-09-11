@@ -57,8 +57,12 @@ export class HomeComponent implements OnInit {
     }
 
     deleteConfigById(configId: string) {
+        this.isLoading = true;
         this.configDataService.deleteConfig(configId)
             .subscribe(() => {
+                console.log('foo')
+                this.initConfigs();
+            }, error => {
                 this.initConfigs();
             })
     }
