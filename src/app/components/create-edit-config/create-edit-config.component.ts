@@ -10,6 +10,8 @@ import {ConfigDataService} from 'src/app/services/config-data.service';
 import {ConfigContainer} from "../../model/ConfigContainer";
 import * as moment from "moment";
 import {MessageDialogComponent} from "../../dialogs/message-dialog/message-dialog.component";
+import {EditIdsInConfigDialogComponent} from "../../dialogs/edit-ids-in-config-dialog/edit-ids-in-config-dialog.component";
+import {FormControl} from "@angular/forms";
 
 @Component({
     selector: 'app-create-edit-config',
@@ -31,7 +33,7 @@ export class CreateEditConfigComponent implements OnInit {
     public isError = false;
     public noIdError = false;
     public isSaving = false;
-    public isRevertingChanges = false;
+    public isRerenderingJsonInput = false;
 
     createdFormated = '';
     lastModifiedFormated = '';
@@ -40,6 +42,8 @@ export class CreateEditConfigComponent implements OnInit {
     jsonChangedSubscription: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
     private ngUnsubscribe: Subject<void> = new Subject<void>();
+
+    configIdFormControl = new FormControl();
 
     constructor(
         private snackBar: MatSnackBar,
@@ -86,7 +90,8 @@ export class CreateEditConfigComponent implements OnInit {
     }
 
     saveConfig() {
-        if (this.unsavedConfigContainer.nms_id?.values?.length > 0) {
+        console.log(this.unsavedConfigContainer)
+        if (this.unsavedConfigContainer.nms_id?.values?.length > 0 && !!this.unsavedConfigContainer.configId && this.unsavedConfigContainer.configId === this.configId) {
             this.noIdError = false;
             this.isSaving = true;
             if (this.isFreshConfig) {
@@ -119,10 +124,10 @@ export class CreateEditConfigComponent implements OnInit {
     }
 
     revertChanges() {
-        this.isRevertingChanges = true;
+        this.isRerenderingJsonInput = true;
         this.unsavedConfigContainer = this.configContainer;
         this.hasUnsavedChanges = false;
-        setTimeout(() => this.isRevertingChanges = false, 1000)
+        setTimeout(() => this.isRerenderingJsonInput = false, 1000);
     }
 
     loadConfigById(id: string) {
@@ -142,7 +147,7 @@ export class CreateEditConfigComponent implements OnInit {
 
     addId() {
         const path = this.configContainer?.nms_id?.path;
-        this.dialog.open(AddFieldToConfigDialogComponent, {data: {fieldName: 'ID', path}})
+        this.dialog.open(AddFieldToConfigDialogComponent, {data: {fieldName: 'nms_id', path}})
             .afterClosed()
             .subscribe((data: { value: string, path: string }) => {
                 if (data?.value && data?.path) {
@@ -150,29 +155,31 @@ export class CreateEditConfigComponent implements OnInit {
                     dataTemp.nms_id.path = data.path;
                     dataTemp.nms_id.values.push(data.value);
                     this.unsavedConfigContainer = dataTemp;
-                    this.hasUnsavedChanges = true;
+                    // this.hasUnsavedChanges = true;
+                    this.saveConfig();
+                    // this.rerenderConfig();
                 }
             });
     }
 
-    addValue() {
-        this.dialog.open(AddFieldToConfigDialogComponent, {data: {fieldName: 'ID'}})
+    editValues() {
+        this.dialog.open(EditIdsInConfigDialogComponent, {data: {values: Object.assign([], this.configContainer.values)}})
             .afterClosed()
-            .subscribe((data: { value: string, path: string }) => {
-                if (data?.value && data?.path) {
+            .subscribe((values: any) => {
+                console.log(values)
+                if (values) {
                     let dataTemp = Object.assign({}, this.configContainer);
-                    dataTemp.values.push({
-                        path: data.path,
-                        key: data.value
-                    });
+                    dataTemp.values = values;
+                    this.configContainer = dataTemp;
                     this.unsavedConfigContainer = dataTemp;
-                    this.hasUnsavedChanges = true;
+                    // this.hasUnsavedChanges = true;
+                    this.saveConfig();
+                    // this.rerenderConfig();
                 }
             });
     }
 
     jsonChanged(event: any) {
-        console.log(event)
         this.jsonChangedSubscription.next(this.editor.getText());
     }
 
@@ -195,5 +202,17 @@ export class CreateEditConfigComponent implements OnInit {
             }, error => {
                 this.dialog.open(MessageDialogComponent, {data: {message: 'An error occured. Please check the JSON data.'}})
             });
+    }
+
+    rerenderConfig() {
+        this.isRerenderingJsonInput = true;
+        setTimeout(() => this.isRerenderingJsonInput = false, 1000);
+    }
+
+    mainInputChanged() {
+        this.rerenderConfig();
+        let dataTemp = Object.assign({}, this.configContainer);
+        this.unsavedConfigContainer = dataTemp;
+        this.hasUnsavedChanges = true;
     }
 }

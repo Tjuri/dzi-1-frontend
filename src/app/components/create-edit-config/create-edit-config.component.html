@@ -61,6 +61,16 @@
                         Saved
                     </h2>
                 </div>
+
+                <div *ngIf="isError || noIdError"
+                     class="u-flex-align-center u-margin-right-20">
+                    <mat-icon class="u-margin-right-10"
+                              color="primary">report_problem
+                    </mat-icon>
+                    <h2>
+                        Unsaved
+                    </h2>
+                </div>
             </div>
         </div>
     </div>
@@ -71,19 +81,21 @@
             <mat-form-field class="input-width"
                             appearance="outline">
                 <mat-label>Config ID</mat-label>
-                <input matInput [value]="getConfigIDs()" disabled>
+                <input matInput [(ngModel)]="configContainer.configId"
+                       [disabled]="!isFreshConfig"
+                       (ngModelChange)="mainInputChanged()">
             </mat-form-field>
 
             <mat-form-field class="input-width"
                             appearance="outline">
                 <mat-label>Device Brand</mat-label>
-                <input matInput [(ngModel)]="configContainer.deviceBrand" disabled>
+                <input matInput [(ngModel)]="configContainer.deviceBrand" (ngModelChange)="mainInputChanged()">
             </mat-form-field>
 
             <mat-form-field class="input-width"
                             appearance="outline">
                 <mat-label>Device Name</mat-label>
-                <input matInput [(ngModel)]="configContainer.deviceName" disabled>
+                <input matInput [(ngModel)]="configContainer.deviceName" (ngModelChange)="mainInputChanged()">
             </mat-form-field>
 
             <mat-form-field class="input-width"
@@ -106,7 +118,7 @@
                         mat-raised-button color="primary" (click)="addId()">Add nms_id
                 </button>
                 <button class="u-margin-right-10"
-                        mat-raised-button color="primary" (click)="addValue()">Add Value
+                        mat-raised-button color="primary" (click)="editValues()">Edit Values
                 </button>
 
                 <div *ngIf="noIdError"
@@ -118,14 +130,11 @@
                         Please specify 'configId' and at least one 'nms_id' to save this config
                     </span>
                 </div>
-
             </div>
-
-
 
             <div
                     class="json-editor-container u-margin-top-10">
-                <json-editor *ngIf="!isRevertingChanges; else loadingSpinner"
+                <json-editor *ngIf="!isRerenderingJsonInput; else loadingSpinner"
                              [options]="editorOptions"
                              [data]="configContainer"
                              (change)="jsonChanged($event)">

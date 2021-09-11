@@ -1,0 +1,22 @@
+.values-container {
+  margin: 0px 40px 0px 0px;
+  overflow: auto;
+  height: 250px;
+  padding: 5px;
+  width: 200px;
+
+  .single-value {
+    background-color: #ececec;
+    padding: 3px 5px;
+    border-radius: 12px;
+  }
+
+  .selected-value {
+    color: white;
+    background-color: #4050b5;
+
+    mat-icon {
+      color: white !important;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+<div class="u-flex-center-column">
+    <h2>Edit Values</h2>
+
+    <div class="u-flex-row u-margin-top-10">
+        <div class="u-flex-column ">
+            <div>
+                <div>
+                    <button mat-icon-button color="primary"
+                            [disabled]="values.length > 0 && !!!values[values.length - 1].key"
+                            (click)="addValue()">
+                        <mat-icon>add_box</mat-icon>
+                    </button>
+                </div>
+                <div class="values-container">
+                    <div *ngFor="let value of values; let index = index;" class="u-margin-bottom-2">
+                        <div (click)="selectValue(value)"
+                             [class.selected-value]="selectedValue.key === value.key"
+                             class="u-flex-row u-flex-space-between u-flex-align-center u-cursor-pointer single-value">
+                            <div>{{value.key ? value.key : 'NEW VALUE'}}</div>
+                            <button mat-icon-button color="primary"
+                                    (click)="removeValue(index)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="u-flex-column u-margin-top-40">
+            <mat-form-field appearance="outline">
+                <mat-label>Key</mat-label>
+                <input matInput [(ngModel)]="selectedValue.key">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Path</mat-label>
+                <input matInput [(ngModel)]="selectedValue.path">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="u-flex-space-between u-width-100">
+        <button mat-raised-button color="secondary" (click)="closeDialog()"> Cancel</button>
+        <button mat-raised-button color="primary" (click)="closeDialog(values)"> Save</button>
+    </div>
+</div>
