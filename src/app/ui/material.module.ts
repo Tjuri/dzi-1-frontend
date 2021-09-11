@@ -29,6 +29,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
     imports: [
@@ -63,6 +64,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         MatTableModule,
         MatSortModule,
         MatPaginatorModule,
+        MatAutocompleteModule
     ],
     exports: [
         MatButtonModule,
@@ -95,7 +97,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         MatDividerModule,
         MatTableModule,
         MatSortModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatAutocompleteModule
     ],
 })
 export class AngularMaterialModule {
