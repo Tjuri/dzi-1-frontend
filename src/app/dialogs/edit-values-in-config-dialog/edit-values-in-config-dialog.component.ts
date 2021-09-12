@@ -4,16 +4,16 @@ import {FormControl, Validators} from "@angular/forms";
 import {ConfigContainer} from "../../model/ConfigContainer";
 
 @Component({
-    selector: 'app-edit-ids-in-config-dialog',
-    templateUrl: './edit-ids-in-config-dialog.component.html',
-    styleUrls: ['./edit-ids-in-config-dialog.component.scss']
+    selector: 'app-edit-values-in-config-dialog',
+    templateUrl: './edit-values-in-config-dialog.component.html',
+    styleUrls: ['./edit-values-in-config-dialog.component.scss']
 })
-export class EditIdsInConfigDialogComponent implements OnInit {
+export class EditValuesInConfigDialogComponent implements OnInit {
 
     values: { key: string, path: string }[] = [];
     selectedValue: { key: string, path: string } = {key: '', path: ''};
 
-    constructor(public dialogRef: MatDialogRef<EditIdsInConfigDialogComponent>,
+    constructor(public dialogRef: MatDialogRef<EditValuesInConfigDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: { values: any }) {
     }
 

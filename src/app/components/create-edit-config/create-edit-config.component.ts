@@ -10,7 +10,7 @@ import {ConfigDataService} from 'src/app/services/config-data.service';
 import {ConfigContainer} from "../../model/ConfigContainer";
 import * as moment from "moment";
 import {MessageDialogComponent} from "../../dialogs/message-dialog/message-dialog.component";
-import {EditIdsInConfigDialogComponent} from "../../dialogs/edit-ids-in-config-dialog/edit-ids-in-config-dialog.component";
+import {EditValuesInConfigDialogComponent} from "../../dialogs/edit-ids-in-config-dialog/edit-values-in-config-dialog.component";
 import {FormControl} from "@angular/forms";
 
 @Component({
@@ -163,7 +163,7 @@ export class CreateEditConfigComponent implements OnInit {
     }
 
     editValues() {
-        this.dialog.open(EditIdsInConfigDialogComponent, {data: {values: Object.assign([], this.configContainer.values)}})
+        this.dialog.open(EditValuesInConfigDialogComponent, {data: {values: Object.assign([], this.configContainer.values)}})
             .afterClosed()
             .subscribe((values: any) => {
                 console.log(values)
