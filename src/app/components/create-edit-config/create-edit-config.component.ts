@@ -10,8 +10,8 @@ import {ConfigDataService} from 'src/app/services/config-data.service';
 import {ConfigContainer} from "../../model/ConfigContainer";
 import * as moment from "moment";
 import {MessageDialogComponent} from "../../dialogs/message-dialog/message-dialog.component";
-import {EditValuesInConfigDialogComponent} from "../../dialogs/edit-ids-in-config-dialog/edit-values-in-config-dialog.component";
 import {FormControl} from "@angular/forms";
+import { EditValuesInConfigDialogComponent } from 'src/app/dialogs/edit-values-in-config-dialog/edit-values-in-config-dialog.component';
 
 @Component({
     selector: 'app-create-edit-config',

@@ -13,9 +13,7 @@ import { CreateEditConfigComponent } from './components/create-edit-config/creat
 import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { AddFieldToConfigDialogComponent } from './dialogs/add-field-to-config-dialog/add-field-to-config-dialog.component'
 import { MessageDialogComponent } from './dialogs/message-dialog/message-dialog.component';
-import { EditValuesInConfigDialogComponent } from './dialogs/edit-ids-in-config-dialog/edit-values-in-config-dialog.component';
-
-
+import { EditValuesInConfigDialogComponent } from './dialogs/edit-values-in-config-dialog/edit-values-in-config-dialog.component';
 
 @NgModule({
     declarations: [
